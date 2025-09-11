@@ -41,6 +41,7 @@ class OpenCVHelper:
             logger.error(f"[OpenCVHelper] OpenCV error: {e}")
 
     def make_live_video(self): 
+        # TODO: Add an overlay to the video
         """
         Make a live video from the camera. To quit the video, press the 'q' key.
         """
