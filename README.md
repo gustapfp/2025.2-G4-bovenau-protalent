@@ -1,55 +1,78 @@
-# 📘 Guia de Uso do GitHub para Equipes Semestrais
+## Welding Defect Detection (OpenCV)
 
-Bem-vindos ao repositório de projetos ECA UFSC! 🎉  
-Este guia explica como organizar o trabalho da sua equipe usando GitHub. Siga estas orientações para garantir consistência e colaboração eficiente.  
+Projeto de visão computacional baseado em OpenCV para apoiar a identificação de defeitos em solda em cilindros. O repositório contém utilitários com OpenCV e um conjunto de dados anotado em formato YOLO para experimentos.
 
-No início do semestre, cada equipe deve criar o próprio repositório a partir do template oferecido: 
+### Estrutura
+- `src/experiments/utils/open_cv_helper.py`: utilidades com OpenCV.
+- `src/datasets/welding_detect_dataset/`: dataset com `train/`, `valid/`, `test/` em formato YOLO (`images/` e `labels/`) e `data.yaml`.
+- `requirements.txt`: dependências principais (OpenCV e NumPy).
 
-Vá até project-template
-- Clique em “Use this template” → “Create a new repository”
-- Nomeie o repositório no padrão:
-- 2025.2-equipe1-nome-do-projeto
+### Requisitos
+- Python 3.9+ (recomendado 3.11)
+- Pip recente (`python -m pip install --upgrade pip`)
 
-Mantenha um README conforme estrutura a seguir:
+## Configurando ambiente virtual (venv)
 
----
+Instalar dependências em um ambiente virtual evita conflitos entre projetos. Abaixo, passos para Ubuntu/Linux, Windows e macOS. Após ativar o ambiente, instale as dependências com `pip install -r requirements.txt`.
 
-# 📌 Nome do Projeto
-
-Breve descrição do projeto (o que ele faz, para quem é, objetivo principal).
-
----
-
-## 👥 Integrantes da Equipe
-- Nome do Aluno 1 (Função)  
-- Nome do Aluno 2 (Função)  
-- Nome do Aluno 3 (Função)  
-- Nome do Aluno 4 (Função)  
-
----
-
-## 🗓 Semestre
-- **Ano/Semestre:** 2025.2  
-- **Equipe:** Equipe 1  
-
----
-
-## 🚀 Como Executar o Projeto
-
-### Pré-requisitos
-- [ ] Instalar **Node.js** (versão XX) ou **Python** (versão XX)  
-- [ ] Instalar dependências  
-
-### Passos
+### Ubuntu / Linux
 ```bash
-# Clonar o repositório
-git clone https://github.com/projetos-eca/2025.2-equipe1-nome-projeto.git
+# Na raiz do projeto
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
 
-# Acessar a pasta
-cd 2025.1-equipe1-nome-projeto
+# Desativar quando terminar
+deactivate
+```
 
-# Instalar dependências (exemplo em Node.js)
-npm install
+### Windows (PowerShell)
+```powershell
+# Na raiz do projeto
+py -3 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
 
-# Executar
-npm start
+# Caso a execução de scripts esteja bloqueada (rode como Admin uma vez):
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+# Desativar
+deactivate
+```
+
+### Windows (CMD)
+```bat
+:: Na raiz do projeto
+py -3 -m venv .venv
+.\.venv\Scripts\activate.bat
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### macOS (Intel/Apple Silicon)
+```bash
+# Na raiz do projeto
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### Dica para WSL (Windows Subsystem for Linux)
+Se estiver usando WSL, siga as instruções de Ubuntu/Linux dentro do terminal WSL. Para acessar arquivos do Windows no WSL, navegue até `/mnt/c/Users/<seu-usuario>/...`.
+
+## Verificando a instalação do OpenCV
+Com o ambiente ativado, execute:
+```bash
+python -c "import cv2, numpy as np; print('OpenCV:', cv2.__version__); img = np.zeros((100,100,3), dtype=np.uint8); print('OK' if img.shape==(100,100,3) else 'NOK')"
+```
+Saída esperada inclui a versão do OpenCV e `OK`.
+
+## Próximos passos
+- Explore `open_cv_helper.py` para exemplos utilitários.
+- Use o dataset em `src/datasets/welding_detect_dataset/` para treinos/validações.
+
+## Licença
+Defina aqui a licença do projeto (por exemplo, MIT). 
